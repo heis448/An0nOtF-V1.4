@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CC Generator Pro</title>
+    <meta name="description" content="Enjoy Anonymous Carding">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#8A2BE2">
+</head>
+<body>
+    <header class="header" role="banner">
+        <div class="header-content">
+            <div class="header-logo">
+                <h1 class="logo">CC <span>GEN</span></h1>
+                <p class="tagline">Advanced Credit Card Generator
+                    <span class="badge badge-nodejs" aria-label="Professional Version">
+                        <svg class="node-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path fill="#ffffff" d="M12 21.985c-.275 0-.532-.074-.772-.202l-2.439-1.448c-.365-.203-.182-.277-.072-.314.496-.165.588-.201 1.101-.493.056-.037.129-.02.185.017l1.87 1.12c.074.036.166.036.221 0l7.319-4.237c.074-.036.11-.11.11-.202V7.768c0-.091-.036-.165-.11-.201l-7.319-4.219c-.073-.037-.165-.037-.221 0L4.552 7.566c-.073.036-.11.129-.11.201v8.457c0 .073.037.166.11.202l2 1.157c1.082.548 1.762-.095 1.762-.735V8.502c0-.11.091-.221.22-.221h.936c.108 0 .22.092.22.221v8.347c0 1.449-.788 2.294-2.164 2.294-.422 0-.752 0-1.688-.46l-1.925-1.099a1.55 1.55 0 0 1-.771-1.34V7.786c0-.55.293-1.064.771-1.339l7.316-4.237a1.637 1.637 0 0 1 1.544 0l7.317 4.237c.479.274.771.789.771 1.339v8.458c0 .549-.293 1.063-.771 1.34l-7.317 4.236c-.241.11-.516.165-.773.165zm2.256-5.816c-3.21 0-3.87-1.468-3.87-2.714 0-.11.092-.221.22-.221h.954c.11 0 .201.073.201.184.147.971.568 1.449 2.514 1.449 1.54 0 2.202-.35 2.202-1.175 0-.477-.185-.825-2.587-1.063-1.999-.2-3.246-.643-3.246-2.238 0-1.485 1.247-2.366 3.339-2.366 2.347 0 3.503.809 3.649 2.568a.297.297 0 0 1-.056.165c-.037.036-.091.073-.146.073h-.953a.212.212 0 0 1-.202-.164c-.221-1.012-.789-1.34-2.292-1.34-1.689 0-1.891.587-1.891 1.027 0 .531.237.696 2.514.99 2.256.293 3.32.715 3.32 2.294-.02 1.615-1.339 2.531-3.67 2.531z"/>
+                        </svg>
+                        Pro
+                    </span>
+                </p>
+            </div>
+            <div class="header-buttons">
+                <button class="header-btn check-cards" id="check-cards-btn" aria-label="Redirect to An0nOtF Cc Gen">
+                    An0nOtF Cc Gen
+                </button>
+                <button class="header-btn logout" id="logout-btn" aria-label="Log out">
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main" role="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Generate Cards</h2>
+                            <p>Fill in the details to generate credit card numbers</p>
+                        </div>
+                        <form id="form-generator" aria-label="Credit Card Generator Form">
+                            <div class="form-group">
+                                <label class="form-label" for="cc-bin">BIN/Matrix (Use 'x' for random digits)</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="cc-bin" 
+                                    placeholder="Enter BIN (e.g. 451234xxxxxxxx)" 
+                                    maxlength="19"
+                                    aria-describedby="bin-help"
+                                    required
+                                >
+                                <small id="bin-help" class="form-text" style="display: none;">Enter card number pattern with 'x' for random digits</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="cc-quantity">Quantity</label>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="cc-quantity" 
+                                    placeholder="Number of cards to generate" 
+                                    value="10" 
+                                    min="1" 
+                                    max="100"
+                                    aria-describedby="quantity-help"
+                                >
+                                <small id="quantity-help" class="form-text" style="display: none;">Generate between 1 and 100 cards</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="cc-month">Month</label>
+                                <select class="form-control" id="cc-month" aria-label="Select expiration month">
+                                    <option value="random">Random</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="cc-year">Year</label>
+                                <select class="form-control" id="cc-year" aria-label="Select expiration year">
+                                    <option value="random">Random</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="cc-cvv">CVV</label>
+                                <select class="form-control" id="cc-cvv" aria-label="Select CVV format">
+                                    <option value="random">Random</option>
+                                    <option value="3-digits">3 digits</option>
+                                    <option value="4-digits">4 digits</option>
+                                </select>
+                            </div>
+                            
+                            <button 
+                                type="button" 
+                                id="generate-btn" 
+                                class="btn btn-primary btn-block pulse"
+                                aria-label="Generate credit cards"
+                            >
+                                Generate Cards
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Generated Cards</h2>
+                            <p>Your generated credit card details will appear here</p>
+                        </div>
+                        
+                        <div id="generated-credit-cards" aria-live="polite" aria-atomic="true">
+                            <div class="credit-card animate-fade-in" style="animation-delay: 0.5s;" role="img" aria-label="Sample credit card">
+                                <div class="credit-card-chip" aria-hidden="true"></div>
+                                <div class="credit-card-content">
+                                    <div class="credit-card-number">4512 3456 7890 1234</div>
+                                    <div class="credit-card-info">
+                                        <div class="credit-card-info-item">
+                                            <span class="credit-card-info-label">Expiry</span>
+                                            <span class="credit-card-info-value">05/25</span>
+                                        </div>
+                                        <div class="credit-card-info-item">
+                                            <span class="credit-card-info-label">CVV</span>
+                                            <span class="credit-card-info-value">123</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons" role="group" aria-label="Card actions">
+                                <button id="copy-all-btn" class="btn btn-success" aria-label="Copy all generated cards">
+                                    Copy All
+                                </button>
+                                <button id="clear-btn" class="btn btn-secondary" aria-label="Clear all generated cards">
+                                    Clear
+                                </button>
+                                <button id="download-btn" class="btn btn-secondary" aria-label="Download cards as text file">
+                                    Download TXT
+                                </button>
+                            </div>
+                            
+                            <ul class="generated-list" id="generated-list" role="list" aria-label="Generated card list">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <button class="audio-btn" id="mute-btn" aria-label="Mute audio"></button>
+        <button class="audio-btn" id="play-btn" style="display: none;">▶️ Play Sound</button>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p>© 2026 CC Gen | Dev <a href="#" target="_blank" rel="noopener noreferrer">🅰️n0nOtF Technologies Inc 💎 </a></p>
+        </div>
+    </footer>
+
+    <!-- Audio Element (Hidden) -->
+    <audio id="background-sound" loop>
+        <!-- Multiple sound sources for better compatibility -->
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-casino-slot-machine-coin-win-1037.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-slot-machine-coin-win-1996.mp3" type="audio/mpeg">
+        <!-- Fallback text -->
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+    <script>
+        // Enhanced Audio Control Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('background-sound');
+            const muteBtn = document.getElementById('mute-btn');
+            const playBtn = document.getElementById('play-btn');
+            const checkCardsBtn = document.getElementById('check-cards-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+            
+            // Set audio volume
+            audio.volume = 0.3;
+            
+            // Function to play audio
+            function playAudio() {
+                return audio.play().then(() => {
+                    console.log("Audio started successfully");
+                    muteBtn.textContent = 'Sound On';
+                    playBtn.style.display = 'none';
+                    return true;
+                }).catch(error => {
+                    console.log("Audio play failed:", error);
+                    // Show play button if autoplay fails
+                    playBtn.style.display = 'block';
+                    muteBtn.style.display = 'none';
+                    return false;
+                });
+            }
+            
+            // Function to update mute button text
+            function updateMuteButton() {
+                if (audio.muted) {
+                    muteBtn.textContent = 'Sound Off';
+                    muteBtn.classList.add('muted');
+                } else {
+                    muteBtn.textContent = 'Sound On';
+                    muteBtn.classList.remove('muted');
+                }
+            }
+            
+            // Initialize mute button
+            updateMuteButton();
+            
+            // Try to play audio on page load
+            playAudio().then(success => {
+                if (!success) {
+                    console.log("Autoplay blocked, waiting for user interaction");
+                }
+            });
+            
+            // Add click event to entire page to start audio
+            document.body.addEventListener('click', function initAudio() {
+                if (audio.paused) {
+                    playAudio();
+                }
+                // Remove the event listener after first click
+                document.body.removeEventListener('click', initAudio);
+            }, { once: true });
+            
+            // Mute button functionality
+            muteBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                audio.muted = !audio.muted;
+                updateMuteButton();
+            });
+            
+            // Play button functionality (shown when autoplay fails)
+            playBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                playAudio().then(success => {
+                    if (success) {
+                        muteBtn.style.display = 'block';
+                        playBtn.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Check cards button functionality
+            checkCardsBtn.addEventListener('click', function() {
+                window.location.href = 'http://107.152.44.166:3470/';
+            });
+            
+            // Logout button functionality
+            logoutBtn.addEventListener('click', function() {
+                window.location.href = 'http://107.152.44.166:3470/';
+            });
+            
+            // Try to play audio on any button click
+            const allButtons = document.querySelectorAll('button');
+            allButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (audio.paused && !audio.muted) {
+                        playAudio();
+                    }
+                });
+            });
+            
+            // Add audio state indicator
+            audio.addEventListener('playing', function() {
+                console.log("Audio is now playing");
+            });
+            
+            audio.addEventListener('pause', function() {
+                console.log("Audio paused");
+            });
+        });
+    </script>
+</body>
+</html>
