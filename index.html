@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CC Generator Pro</title>
+    <meta name="description" content="Enjoy Anonymous Carding">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#8A2BE2">
+    
+    <!-- ALL CSS INLINED -->
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --primary-dark: #6A1FBF;
+            --primary-light: #9D4EDD;
+            --secondary: #FF5722;
+            --secondary-dark: #E64A19;
+            --dark: #121212;
+            --dark-alt: #1E1E1E;
+            --light: #FFFFFF;
+            --gray: #333333;
+            --gray-light: #555555;
+            --gray-lighter: #777777;
+            --success: #4CAF50;
+            --danger: #F44336;
+            --warning: #FFC107;
+            --info: #2196F3;
+            --border-radius: 12px;
+            --border-radius-sm: 8px;
+            --border-radius-lg: 16px;
+            --box-shadow: 0 4px 20px rgba(138, 43, 226, 0.25);
+            --box-shadow-lg: 0 8px 30px rgba(138, 43, 226, 0.35);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: var(--light);
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-alt) 100%);
+            min-height: 100vh;
+            padding-bottom: var(--spacing-xl);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+            color: var(--light);
+        }
+
+        h1 { font-size: clamp(2.8rem, 5vw, 3.6rem); }
+        h2 { font-size: clamp(2.2rem, 4vw, 2.8rem); }
+        h3 { font-size: clamp(1.8rem, 3vw, 2.2rem); }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 100%);
+            padding: var(--spacing-lg) 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: var(--spacing-xxl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.02) 10px,
+                rgba(255, 255, 255, 0.02) 20px
+            );
+            animation: backgroundMove 20s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50%, 50%); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            text-align: left;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .header-logo {
+            flex: 1;
+        }
+
+        .logo {
+            font-size: clamp(2.8rem, 6vw, 3.6rem);
+            font-weight: 700;
+            color: var(--light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .tagline {
+            font-size: clamp(1.4rem, 2.5vw, 1.6rem);
+            color: rgba(255, 255, 255, 0.9);
+            text-align: left;
+        }
+
+        /* Header Buttons */
+        .header-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-left: auto;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .header-btn {
+            background: linear-gradient(45deg, var(--gray) 0%, var(--gray-light) 100%);
+            border: none;
+            color: var(--light);
+            padding: 0.8rem 1.6rem;
+            border-radius: var(--border-radius-sm);
+            font-size: 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            min-width: 140px;
+        }
+
+        .header-btn:hover {
+            background: linear-gradient(45deg, var(--gray-light) 0%, var(--gray-lighter) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-btn.check-cards {
+            background: linear-gradient(45deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border-color: var(--primary);
+        }
+
+        .header-btn.check-cards:hover {
+            background: linear-gradient(45deg, var(--primary) 0%, var(--primary-light) 100%);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .header-btn.logout {
+            background: linear-gradient(45deg, #d32f2f 0%, var(--danger) 100%);
+            border-color: var(--danger);
+        }
+
+        .header-btn.logout:hover {
+            background: linear-gradient(45deg, var(--danger) 0%, #f6685e 100%);
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .card-header {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-title {
+            font-size: clamp(2rem, 3vw, 2.4rem);
+            color: var(--primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .card-header p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.6rem;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: var(--border-radius-sm);
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        select.form-control {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.5rem center;
+            padding-right: 4rem;
+        }
+
+        select.form-control option {
+            background: var(--gray);
+            color: var(--light);
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            padding: 1.2rem 2.4rem;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            border-radius: var(--border-radius-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            font-family: inherit;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn:focus {
+            outline: 0;
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.25);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--light);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(45deg, var(--primary) 0%, var(--primary-light) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .btn-primary:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--gray) 0%, var(--gray-light) 100%);
+            color: var(--light);
+            border-color: var(--gray);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: linear-gradient(45deg, var(--gray-light) 0%, var(--gray-lighter) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(85, 85, 85, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #388E3C 0%, var(--success) 100%);
+            color: var(--light);
+            border-color: var(--success);
+        }
+
+        .btn-success:hover:not(:disabled) {
+            background: linear-gradient(45deg, var(--success) 0%, #66BB6A 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .btn-sm {
+            padding: 0.8rem 1.6rem;
+            font-size: 1.4rem;
+        }
+
+        /* Grid System */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: calc(var(--spacing-md) * -1);
+            margin-left: calc(var(--spacing-md) * -1);
+        }
+
+        .col {
+            flex: 1 0 0%;
+            padding-right: var(--spacing-md);
+            padding-left: var(--spacing-md);
+        }
+
+        .col-12 {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding-right: var(--spacing-md);
+            padding-left: var(--spacing-md);
+        }
+
+        .col-md-6 {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding-right: var(--spacing-md);
+            padding-left: var(--spacing-md);
+        }
+
+        /* Credit Card Styles */
+        .credit-card {
+            background: linear-gradient(135deg, #333 0%, #111 100%);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .credit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3) 0%, rgba(255, 87, 34, 0.3) 100%);
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        .credit-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .credit-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .credit-card-number {
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
+            letter-spacing: 2px;
+            color: var(--light);
+            margin-bottom: var(--spacing-lg);
+            font-family: 'Montserrat', monospace;
+            word-break: break-all;
+        }
+
+        .credit-card-info {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .credit-card-info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .credit-card-info-label {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .credit-card-info-value {
+            font-size: 1.6rem;
+            color: var(--light);
+            font-weight: 600;
+        }
+
+        .credit-card-chip {
+            position: absolute;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            width: 50px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border-radius: 6px;
+            z-index: 2;
+        }
+
+        .credit-card-chip::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 60%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 3px;
+        }
+
+        .credit-card.visa::after,
+        .credit-card.mastercard::after,
+        .credit-card.amex::after,
+        .credit-card.discover::after {
+            position: absolute;
+            bottom: var(--spacing-lg);
+            right: var(--spacing-lg);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: white;
+            z-index: 2;
+        }
+
+        .credit-card.visa::after {
+            content: 'VISA';
+            font-size: 1.8rem;
+        }
+
+        .credit-card.mastercard::after {
+            content: 'MASTERCARD';
+            font-size: 1.4rem;
+        }
+
+        .credit-card.amex::after {
+            content: 'AMEX';
+            font-size: 1.8rem;
+        }
+
+        .credit-card.discover::after {
+            content: 'DISCOVER';
+            font-size: 1.6rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        .action-buttons .btn {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* Generated List */
+        .generated-list {
+            list-style: none;
+            padding: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .generated-item {
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spacing-sm);
+            transition: var(--transition);
+            border-left: 3px solid var(--primary);
+            flex-wrap: wrap;
+        }
+
+        .generated-item:hover {
+            background: rgba(30, 30, 30, 0.8);
+            transform: translateX(5px);
+        }
+
+        .generated-item-text {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            font-size: 1.4rem;
+            word-break: break-all;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .copy-btn {
+            background: rgba(138, 43, 226, 0.2);
+            border: none;
+            color: var(--light);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 50px;
+            background-color: var(--primary);
+            color: var(--light);
+            margin-left: var(--spacing-sm);
+        }
+
+        .badge-nodejs {
+            background-color: #68A063;
+        }
+
+        .node-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 6px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg) 0;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.4rem;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Audio Controls */
+        .audio-controls {
+            position: fixed;
+            bottom: var(--spacing-lg);
+            right: var(--spacing-lg);
+            z-index: 1000;
+        }
+
+        .audio-btn {
+            background: linear-gradient(45deg, var(--primary-dark) 0%, var(--primary) 100%);
+            border: none;
+            color: var(--light);
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .audio-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .audio-btn.muted {
+            background: linear-gradient(45deg, var(--gray) 0%, var(--gray-light) 100%);
+        }
+
+        .audio-btn.muted:hover {
+            background: linear-gradient(45deg, var(--gray-light) 0%, var(--gray-lighter) 100%);
+        }
+
+        .audio-btn::before {
+            content: '🔊';
+            font-size: 1.6rem;
+        }
+
+        .audio-btn.muted::before {
+            content: '🔇';
+        }
+
+        /* Toast Notification */
+        .toast-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(244, 67, 54, 0.95);
+            color: white;
+            padding: 1.2rem 2rem;
+            border-radius: var(--border-radius-sm);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: var(--transition);
+            max-width: 90%;
+            word-wrap: break-word;
+        }
+
+        .toast-notification.success {
+            background: rgba(76, 175, 80, 0.95);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(138, 43, 226, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(138, 43, 226, 0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-md);
+            }
+            
+            .header-buttons {
+                margin-left: 0;
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .tagline {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 56%;
+            }
+
+            .card {
+                padding: var(--spacing-lg);
+            }
+
+            .header {
+                padding: var(--spacing-md) 0;
+                margin-bottom: var(--spacing-xl);
+            }
+            
+            .header-content {
+                padding: 0 var(--spacing-md);
+            }
+            
+            .header-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .header-btn {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-buttons .btn {
+                width: 100%;
+            }
+
+            .generated-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .generated-item-text {
+                width: 100%;
+                margin-bottom: var(--spacing-xs);
+            }
+
+            .copy-btn {
+                width: 100%;
+            }
+            
+            .audio-controls {
+                bottom: var(--spacing-md);
+                right: var(--spacing-md);
+            }
+            
+            .audio-btn {
+                padding: 0.8rem 1.6rem;
+                font-size: 1.3rem;
+            }
+
+            .toast-notification {
+                right: 10px;
+                left: 10px;
+                max-width: calc(100% - 20px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            html {
+                font-size: 52%;
+            }
+
+            .card {
+                padding: var(--spacing-md);
+            }
+
+            .credit-card {
+                padding: var(--spacing-md);
+                min-height: 180px;
+            }
+
+            .credit-card-chip {
+                width: 40px;
+                height: 32px;
+                top: var(--spacing-md);
+                right: var(--spacing-md);
+            }
+
+            .badge {
+                font-size: 1rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .node-icon {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .header-btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 1.2rem;
+                min-width: unset;
+            }
+            
+            .audio-btn {
+                padding: 0.7rem 1.4rem;
+                font-size: 1.2rem;
+            }
+            
+            .audio-controls {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            html {
+                font-size: 50%;
+            }
+
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .row {
+                margin-right: calc(var(--spacing-sm) * -1);
+                margin-left: calc(var(--spacing-sm) * -1);
+            }
+
+            .col-md-6 {
+                padding-right: var(--spacing-sm);
+                padding-left: var(--spacing-sm);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .header,
+            .footer,
+            .btn,
+            .action-buttons,
+            .header-buttons,
+            .audio-controls {
+                display: none;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .header-btn,
+            .audio-btn {
+                transition: none;
+            }
+            
+            .header-btn:hover,
+            .audio-btn:hover {
+                transform: none;
+            }
+        }
+
+        /* Focus visible for keyboard navigation */
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .card {
+                border: 2px solid var(--primary);
+            }
+
+            .btn {
+                border-width: 3px;
+            }
+            
+            .header-btn {
+                border: 2px solid currentColor;
+            }
+            
+            .audio-btn {
+                border: 3px solid currentColor;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Your HTML body content remains exactly the same -->
+    <header class="header" role="banner">
+        <div class="header-content">
+            <div class="header-logo">
+                <h1 class="logo">CC <span>GEN</span></h1>
+                <p class="tagline">Advanced Credit Card Generator
+                    <span class="badge badge-nodejs" aria-label="Professional Version">
+                        <svg class="node-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path fill="#ffffff" d="M12 21.985c-.275 0-.532-.074-.772-.202l-2.439-1.448c-.365-.203-.182-.277-.072-.314.496-.165.588-.201 1.101-.493.056-.037.129-.02.185.017l1.87 1.12c.074.036.166.036.221 0l7.319-4.237c.074-.036.11-.11.11-.202V7.768c0-.091-.036-.165-.11-.201l-7.319-4.219c-.073-.037-.165-.037-.221 0L4.552 7.566c-.073.036-.11.129-.11.201v8.457c0 .073.037.166.11.202l2 1.157c1.082.548 1.762-.095 1.762-.735V8.502c0-.11.091-.221.22-.221h.936c.108 0 .22.092.22.221v8.347c0 1.449-.788 2.294-2.164 2.294-.422 0-.752 0-1.688-.46l-1.925-1.099a1.55 1.55 0 0 1-.771-1.34V7.786c0-.55.293-1.064.771-1.339l7.316-4.237a1.637 1.637 0 0 1 1.544 0l7.317 4.237c.479.274.771.789.771 1.339v8.458c0 .549-.293 1.063-.771 1.34l-7.317 4.236c-.241.11-.516.165-.773.165zm2.256-5.816c-3.21 0-3.87-1.468-3.87-2.714 0-.11.092-.221.22-.221h.954c.11 0 .201.073.201.184.147.971.568 1.449 2.514 1.449 1.54 0 2.202-.35 2.202-1.175 0-.477-.185-.825-2.587-1.063-1.999-.2-3.246-.643-3.246-2.238 0-1.485 1.247-2.366 3.339-2.366 2.347 0 3.503.809 3.649 2.568a.297.297 0 0 1-.056.165c-.037.036-.091.073-.146.073h-.953a.212.212 0 0 1-.202-.164c-.221-1.012-.789-1.34-2.292-1.34-1.689 0-1.891.587-1.891 1.027 0 .531.237.696 2.514.99 2.256.293 3.32.715 3.32 2.294-.02 1.615-1.339 2.531-3.67 2.531z"/>
+                        </svg>
+                        Pro
+                    </span>
+                </p>
+            </div>
+            <div class="header-buttons">
+                <button class="header-btn check-cards" id="check-cards-btn" aria-label="Redirect to An0nOtF Cc Gen">
+                    An0nOtF Cc Gen
+                </button>
+                <button class="header-btn logout" id="logout-btn" aria-label="Log out">
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main" role="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 animate-fade-in" style="animation-delay: 0.1s;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Generate Cards</h2>
+                            <p>Fill in the details to generate credit card numbers</p>
+                        </div>
+                        <form id="form-generator" aria-label="Credit Card Generator Form">
+                            <div class="form-group">
+                                <label class="form-label" for="cc-bin">BIN/Matrix (Use 'x' for random digits)</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="cc-bin" 
+                                    placeholder="Enter BIN (e.g. 451234xxxxxxxx)" 
+                                    maxlength="19"
+                                    aria-describedby="bin-help"
+                                    required
+                                >
+                                <small id="bin-help" class="form-text" style="display: none;">Enter card number pattern with 'x' for random digits</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="cc-quantity">Quantity</label>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="cc-quantity" 
+                                    placeholder="Number of cards to generate" 
+                                    value="10" 
+                                    min="1" 
+                                    max="100"
+                                    aria-describedby="quantity-help"
+                                >
+                                <small id="quantity-help" class="form-text" style="display: none;">Generate between 1 and 100 cards</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="cc-month">Month</label>
+                                <select class="form-control" id="cc-month" aria-label="Select expiration month">
+                                    <option value="random">Random</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="cc-year">Year</label>
+                                <select class="form-control" id="cc-year" aria-label="Select expiration year">
+                                    <option value="random">Random</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="cc-cvv">CVV</label>
+                                <select class="form-control" id="cc-cvv" aria-label="Select CVV format">
+                                    <option value="random">Random</option>
+                                    <option value="3-digits">3 digits</option>
+                                    <option value="4-digits">4 digits</option>
+                                </select>
+                            </div>
+                            
+                            <button 
+                                type="button" 
+                                id="generate-btn" 
+                                class="btn btn-primary btn-block pulse"
+                                aria-label="Generate credit cards"
+                            >
+                                Generate Cards
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 animate-fade-in" style="animation-delay: 0.3s;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Generated Cards</h2>
+                            <p>Your generated credit card details will appear here</p>
+                        </div>
+                        
+                        <div id="generated-credit-cards" aria-live="polite" aria-atomic="true">
+                            <div class="credit-card animate-fade-in" style="animation-delay: 0.5s;" role="img" aria-label="Sample credit card">
+                                <div class="credit-card-chip" aria-hidden="true"></div>
+                                <div class="credit-card-content">
+                                    <div class="credit-card-number">4512 3456 7890 1234</div>
+                                    <div class="credit-card-info">
+                                        <div class="credit-card-info-item">
+                                            <span class="credit-card-info-label">Expiry</span>
+                                            <span class="credit-card-info-value">05/25</span>
+                                        </div>
+                                        <div class="credit-card-info-item">
+                                            <span class="credit-card-info-label">CVV</span>
+                                            <span class="credit-card-info-value">123</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons" role="group" aria-label="Card actions">
+                                <button id="copy-all-btn" class="btn btn-success" aria-label="Copy all generated cards">
+                                    Copy All
+                                </button>
+                                <button id="clear-btn" class="btn btn-secondary" aria-label="Clear all generated cards">
+                                    Clear
+                                </button>
+                                <button id="download-btn" class="btn btn-secondary" aria-label="Download cards as text file">
+                                    Download TXT
+                                </button>
+                            </div>
+                            
+                            <ul class="generated-list" id="generated-list" role="list" aria-label="Generated card list">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <button class="audio-btn" id="mute-btn" aria-label="Mute audio"></button>
+        <button class="audio-btn" id="play-btn" style="display: none;">▶️ Play Sound</button>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p>© 2026 CC Gen | Dev <a href="#" target="_blank" rel="noopener noreferrer">🅰️n0nOtF Technologies Inc 💎 </a></p>
+        </div>
+    </footer>
+
+    <!-- Audio Element (Hidden) -->
+    <audio id="background-sound" loop>
+        <!-- Multiple sound sources for better compatibility -->
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-casino-slot-machine-coin-win-1037.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-slot-machine-coin-win-1996.mp3" type="audio/mpeg">
+        <!-- Fallback text -->
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- ALL JAVASCRIPT INLINED -->
+    <script>
+        // Initial DOM setup
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSelect = document.getElementById('cc-year');
+            const currentYear = new Date().getFullYear();
+            const randomOption = yearSelect.querySelector('option[value="random"]');
+            
+            yearSelect.innerHTML = '';
+            if (randomOption) {
+                yearSelect.appendChild(randomOption);
+            }
+
+            for (let i = 0; i <= 20; i++) {
+                const year = currentYear + i;
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearSelect.appendChild(option);
+            }
+        });
+
+        // Card Utility Functions
+        const CardUtils = {
+            luhnCheck: (num) => {
+                let arr = (num + '').split('').reverse();
+                let sum = 0;
+                
+                for (let i = 0; i < arr.length; i++) {
+                    let digit = parseInt(arr[i]);
+                    if (i % 2 === 1) {
+                        digit *= 2;
+                        if (digit > 9) digit -= 9;
+                    }
+                    sum += digit;
+                }
+                
+                return sum % 10 === 0;
+            },
+            
+            calculateLuhnCheckDigit: (partialNumber) => {
+                const numberWithZero = partialNumber + '0';
+                
+                let sum = 0;
+                let alternate = false;
+                for (let i = numberWithZero.length - 1; i >= 0; i--) {
+                    let digit = parseInt(numberWithZero.charAt(i));
+                    if (alternate) {
+                        digit *= 2;
+                        if (digit > 9) {
+                            digit -= 9;
+                        }
+                    }
+                    sum += digit;
+                    alternate = !alternate;
+                }
+                
+                const checkDigit = (10 - (sum % 10)) % 10;
+                return checkDigit;
+            },
+            
+            rand: (min, max) => {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            },
+            
+            pad: (num, size) => {
+                let s = String(num);
+                while (s.length < size) s = "0" + s;
+                return s;
+            },
+            
+            detectCardType: (number) => {
+                const patterns = {
+                    visa: /^4[0-9]{12}(?:[0-9]{3})?$/,
+                    mastercard: /^5[1-5][0-9]{14}$/,
+                    amex: /^3[47][0-9]{13}$/,
+                    discover: /^6(?:011|5[0-9]{2})[0-9]{12}$/,
+                    diners: /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
+                    jcb: /^(?:2131|1800|35\d{3})\d{11}$/
+                };
+                
+                for (const [type, pattern] of Object.entries(patterns)) {
+                    if (pattern.test(number)) return type;
+                }
+                
+                if (number.startsWith('4')) return 'visa';
+                if (number.startsWith('5')) return 'mastercard';
+                if (number.startsWith('34') || number.startsWith('37')) return 'amex';
+                if (number.startsWith('6')) return 'discover';
+                
+                return 'unknown';
+            },
+            
+            formatCardNumber: (number) => {
+                if (!number) return '';
+                
+                const cleaned = number.replace(/\D/g, '');
+                
+                if (/^3[47]/.test(cleaned)) {
+                    return cleaned.replace(/^(\d{4})(\d{6})(\d{5})$/, '$1 $2 $3');
+                } else {
+                    return cleaned.replace(/(\d{4})(?=\d)/g, '$1 ');
+                }
+            }
+        };
+
+        // Card Generator Class
+        class CardGenerator {
+            constructor() {
+                this.initElements();
+                this.initEventListeners();
+                this.initDefaults();
+                this.setupCardTypeDetection();
+            }
+            
+            initElements() {
+                this.binInput = document.getElementById('cc-bin');
+                this.quantityInput = document.getElementById('cc-quantity');
+                this.monthSelect = document.getElementById('cc-month');
+                this.yearSelect = document.getElementById('cc-year');
+                this.cvvSelect = document.getElementById('cc-cvv');
+                this.generateBtn = document.getElementById('generate-btn');
+                
+                this.cardPreview = document.querySelector('.credit-card');
+                this.cardNumberDisplay = document.querySelector('.credit-card-number');
+                this.cardExpiryDisplay = document.querySelectorAll('.credit-card-info-value')[0];
+                this.cardCvvDisplay = document.querySelectorAll('.credit-card-info-value')[1];
+                this.generatedList = document.getElementById('generated-list');
+                
+                this.copyAllBtn = document.getElementById('copy-all-btn');
+                this.clearBtn = document.getElementById('clear-btn');
+                this.downloadBtn = document.getElementById('download-btn');
+            }
+            
+            initEventListeners() {
+                this.generateBtn.addEventListener('click', () => this.generateCards());
+                this.binInput.addEventListener('input', () => this.handleBinInput());
+                this.binInput.addEventListener('blur', () => this.addPlaceholder());
+                
+                this.copyAllBtn.addEventListener('click', () => this.copyAllCards());
+                this.clearBtn.addEventListener('click', () => this.clearResults());
+                this.downloadBtn.addEventListener('click', () => this.downloadResults());
+                
+                document.querySelectorAll('.btn').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        const x = e.clientX - e.target.getBoundingClientRect().left;
+                        const y = e.clientY - e.target.getBoundingClientRect().top;
+                        
+                        const ripple = document.createElement('span');
+                        ripple.style.position = 'absolute';
+                        ripple.style.background = 'rgba(255, 255, 255, 0.7)';
+                        ripple.style.borderRadius = '50%';
+                        ripple.style.width = '20px';
+                        ripple.style.height = '20px';
+                        ripple.style.transform = 'scale(0)';
+                        ripple.style.left = x + 'px';
+                        ripple.style.top = y + 'px';
+                        ripple.style.animation = 'ripple 0.6s linear';
+                        ripple.style.pointerEvents = 'none';
+                        
+                        this.appendChild(ripple);
+                        
+                        setTimeout(() => {
+                            ripple.remove();
+                        }, 600);
+                    });
+                });
+            }
+            
+            initDefaults() {
+                this.cardLength = 16;
+                this.quantity = 10;
+                this.generatedCards = [];
+            }
+            
+            setupCardTypeDetection() {
+                this.binInput.addEventListener('input', () => {
+                    const bin = this.binInput.value.replace(/\s+/g, '');
+                    if (bin.length >= 2) {
+                        const cardType = this.detectCardTypeFromBin(bin);
+                        this.updateCardPreviewType(cardType);
+                    }
+                });
+            }
+            
+            detectCardTypeFromBin(bin) {
+                if (bin.startsWith('4')) return 'visa';
+                if (/^5[1-5]/.test(bin)) return 'mastercard';
+                if (/^3[47]/.test(bin)) {
+                    this.cardLength = 15;
+                    return 'amex';
+                }
+                if (/^6/.test(bin)) return 'discover';
+                
+                this.cardLength = 16;
+                return 'unknown';
+            }
+            
+            updateCardPreviewType(cardType) {
+                this.cardPreview.classList.remove('visa', 'mastercard', 'amex', 'discover', 'unknown');
+                this.cardPreview.classList.add(cardType);
+                
+                const gradients = {
+                    visa: 'linear-gradient(135deg, #1A1F71 0%, #2B3990 100%)',
+                    mastercard: 'linear-gradient(135deg, #EB001B 0%, #FF5F00 50%, #F79E1B 100%)',
+                    amex: 'linear-gradient(135deg, #108168 0%, #0F6A88 100%)',
+                    discover: 'linear-gradient(135deg, #FF6600 0%, #D35400 100%)',
+                    unknown: 'linear-gradient(135deg, #333 0%, #111 100%)'
+                };
+                
+                this.cardPreview.style.background = gradients[cardType] || gradients.unknown;
+            }
+            
+            handleBinInput() {
+                const input = this.binInput.value.replace(/[^0-9xX]/g, '');
+                this.binInput.value = CardUtils.formatCardNumber(input);
+            }
+            
+            addPlaceholder() {
+                let bin = this.binInput.value.replace(/\s+/g, '');
+                
+                if (bin.length < 1) return;
+                
+                if (/^3[47]/.test(bin)) {
+                    this.cardLength = 15;
+                } else {
+                    this.cardLength = 16;
+                }
+                
+                bin = bin.replace(/X/g, 'x');
+                bin = bin.replace(/[^0-9x]/g, '');
+                
+                let placeholder = '';
+                for (let i = 0; i < this.cardLength - bin.length; i++) {
+                    placeholder += 'x';
+                }
+                
+                this.binInput.value = CardUtils.formatCardNumber(bin + placeholder);
+            }
+            
+            generateCards() {
+                const bin = this.binInput.value.replace(/\s+/g, '');
+                
+                if (bin.length < 1) {
+                    this.showToast('Please enter a BIN or matrix pattern', 'error');
+                    return;
+                }
+                
+                this.generatedList.innerHTML = '';
+                this.generatedCards = [];
+                
+                const quantity = parseInt(this.quantityInput.value) || 10;
+                
+                for (let i = 0; i < quantity; i++) {
+                    const cardNumber = this.generateCardNumber(bin);
+                    const month = this.getMonth();
+                    const year = this.getYear();
+                    const cvv = this.getCVV(cardNumber);
+                    
+                    const card = {
+                        number: cardNumber,
+                        month: month,
+                        year: year,
+                        cvv: cvv,
+                        formatted: `${cardNumber}|${month}|${year}|${cvv}`
+                    };
+                    
+                    this.generatedCards.push(card);
+                    this.addCardToList(card);
+                }
+                
+                if (this.generatedCards.length > 0) {
+                    this.updateCardPreview(this.generatedCards[0]);
+                    this.showToast(`Successfully generated ${quantity} cards`, 'success');
+                }
+                
+                this.animateCards();
+            }
+            
+            generateCardNumber(matrix) {
+                let result = '';
+                let partialNumber = '';
+                
+                for (let i = 0; i < matrix.length; i++) {
+                    const char = matrix[i].toLowerCase();
+                    if (char === 'x') {
+                        const randomDigit = CardUtils.rand(0, 9).toString();
+                        result += randomDigit;
+                        partialNumber += randomDigit;
+                    } else if (/[0-9]/.test(char)) {
+                        result += char;
+                        partialNumber += char;
+                    }
+                    
+                    if (result.length === this.cardLength - 1) break;
+                }
+                
+                while (result.length < this.cardLength - 1) {
+                    const randomDigit = CardUtils.rand(0, 9).toString();
+                    result += randomDigit;
+                    partialNumber += randomDigit;
+                }
+                
+                const checkDigit = CardUtils.calculateLuhnCheckDigit(result);
+                result += checkDigit.toString();
+                
+                if (!CardUtils.luhnCheck(result)) {
+                    console.error("Generated card failed Luhn check:", result);
+                    return this.generateCardNumber(matrix);
+                }
+                
+                return result;
+            }
+            
+            getMonth() {
+                const selectedMonth = this.monthSelect.value;
+                if (selectedMonth && selectedMonth !== 'random') {
+                    return selectedMonth;
+                }
+                return CardUtils.pad(CardUtils.rand(1, 12), 2);
+            }
+            
+            getYear() {
+                const selectedYear = this.yearSelect.value;
+                if (selectedYear && selectedYear !== 'random') {
+                    return selectedYear;
+                }
+                const currentYear = new Date().getFullYear();
+                return (currentYear + CardUtils.rand(1, 7)).toString();
+            }
+            
+            getCVV(cardNumber) {
+                const selectedCVV = this.cvvSelect.value;
+                if (selectedCVV === '3-digits') {
+                    return CardUtils.pad(CardUtils.rand(0, 999), 3);
+                } else if (selectedCVV === '4-digits') {
+                    return CardUtils.pad(CardUtils.rand(0, 9999), 4);
+                }
+                
+                return /^3[47]/.test(cardNumber) ? 
+                    CardUtils.pad(CardUtils.rand(0, 9999), 4) : 
+                    CardUtils.pad(CardUtils.rand(0, 999), 3);
+            }
+            
+            updateCardPreview(card) {
+                this.cardNumberDisplay.textContent = CardUtils.formatCardNumber(card.number);
+                this.cardExpiryDisplay.textContent = `${card.month}/${card.year.slice(-2)}`;
+                this.cardCvvDisplay.textContent = card.cvv;
+                
+                const cardType = CardUtils.detectCardType(card.number);
+                this.updateCardPreviewType(cardType);
+            }
+            
+            addCardToList(card) {
+                const li = document.createElement('li');
+                li.className = 'generated-item animate-fade-in';
+                
+                const span = document.createElement('span');
+                span.className = 'generated-item-text';
+                span.textContent = card.formatted;
+                
+                const button = document.createElement('button');
+                button.className = 'copy-btn';
+                button.textContent = 'Copy';
+                button.addEventListener('click', () => {
+                    navigator.clipboard.writeText(card.formatted).then(() => {
+                        button.textContent = 'Copied!';
+                        setTimeout(() => {
+                            button.textContent = 'Copy';
+                        }, 2000);
+                    });
+                });
+                
+                li.appendChild(span);
+                li.appendChild(button);
+                this.generatedList.appendChild(li);
+            }
+            
+            animateCards() {
+                const items = document.querySelectorAll('.generated-item');
+                items.forEach((item, index) => {
+                    item.style.animationDelay = `${0.1 + index * 0.05}s`;
+                });
+            }
+            
+            copyAllCards() {
+                if (this.generatedCards.length === 0) {
+                    this.showToast('No cards to copy', 'error');
+                    return;
+                }
+                
+                const allCards = this.generatedCards.map(card => card.formatted).join('\n');
+                
+                navigator.clipboard.writeText(allCards).then(() => {
+                    this.showToast('All cards copied to clipboard', 'success');
+                }).catch(err => {
+                    console.error('Failed to copy cards:', err);
+                    this.showToast('Failed to copy cards', 'error');
+                });
+            }
+            
+            clearResults() {
+                this.generatedList.innerHTML = '';
+                this.generatedCards = [];
+                
+                this.cardNumberDisplay.textContent = '4512 3456 7890 1234';
+                this.cardExpiryDisplay.textContent = '05/25';
+                this.cardCvvDisplay.textContent = '123';
+                this.updateCardPreviewType('unknown');
+                
+                this.showToast('Results cleared', 'success');
+            }
+            
+            downloadResults() {
+                if (this.generatedCards.length === 0) {
+                    this.showToast('No cards to download', 'error');
+                    return;
+                }
+                
+                const allCards = this.generatedCards.map(card => card.formatted).join('\n');
+                const blob = new Blob([allCards], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'generated_cards.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                this.showToast('Cards downloaded as TXT file', 'success');
+            }
+            
+            showToast(message, type = 'error') {
+                const existingToast = document.querySelector('.toast-notification');
+                if (existingToast) {
+                    existingToast.remove();
+                }
+                
+                const toast = document.createElement('div');
+                toast.className = `toast-notification ${type}`;
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 10);
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        if (document.body.contains(toast)) {
+                            document.body.removeChild(toast);
+                        }
+                    }, 300);
+                }, 3000);
+            }
+        }
+
+        // Initialize the generator
+        document.addEventListener('DOMContentLoaded', () => {
+            const generator = new CardGenerator();
+            
+            // Audio control functionality
+            const audio = document.getElementById('background-sound');
+            const muteBtn = document.getElementById('mute-btn');
+            const playBtn = document.getElementById('play-btn');
+            const checkCardsBtn = document.getElementById('check-cards-btn');
+            const logoutBtn = document.getElementById('logout-btn');
+            
+            // Set audio volume
+            audio.volume = 0.3;
+            
+            // Function to play audio
+            function playAudio() {
+                return audio.play().then(() => {
+                    console.log("Audio started successfully");
+                    muteBtn.textContent = 'Sound On';
+                    playBtn.style.display = 'none';
+                    return true;
+                }).catch(error => {
+                    console.log("Audio play failed:", error);
+                    // Show play button if autoplay fails
+                    playBtn.style.display = 'block';
+                    muteBtn.style.display = 'none';
+                    return false;
+                });
+            }
+            
+            // Function to update mute button text
+            function updateMuteButton() {
+                if (audio.muted) {
+                    muteBtn.textContent = 'Sound Off';
+                    muteBtn.classList.add('muted');
+                } else {
+                    muteBtn.textContent = 'Sound On';
+                    muteBtn.classList.remove('muted');
+                }
+            }
+            
+            // Initialize mute button
+            updateMuteButton();
+            
+            // Try to play audio on page load
+            playAudio().then(success => {
+                if (!success) {
+                    console.log("Autoplay blocked, waiting for user interaction");
+                }
+            });
+            
+            // Add click event to entire page to start audio
+            document.body.addEventListener('click', function initAudio() {
+                if (audio.paused) {
+                    playAudio();
+                }
+                // Remove the event listener after first click
+                document.body.removeEventListener('click', initAudio);
+            }, { once: true });
+            
+            // Mute button functionality
+            muteBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                audio.muted = !audio.muted;
+                updateMuteButton();
+            });
+            
+            // Play button functionality (shown when autoplay fails)
+            playBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                playAudio().then(success => {
+                    if (success) {
+                        muteBtn.style.display = 'block';
+                        playBtn.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Check cards button functionality
+            checkCardsBtn.addEventListener('click', function() {
+                window.location.href = 'http://107.152.44.166:3470/';
+            });
+            
+            // Logout button functionality
+            logoutBtn.addEventListener('click', function() {
+                window.location.href = 'http://107.152.44.166:3470/';
+            });
+            
+            // Try to play audio on any button click
+            const allButtons = document.querySelectorAll('button');
+            allButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (audio.paused && !audio.muted) {
+                        playAudio();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
